@@ -1,0 +1,10 @@
+---
+
+triggerConditions:
+  - id: ap_has_item
+    parameters:
+      - type: integer
+      - type: integer
+      - type: operator
+
+...

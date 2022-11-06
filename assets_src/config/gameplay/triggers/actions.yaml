@@ -1,0 +1,15 @@
+---
+
+triggerActions:
+  - id: ap_item_check
+
+  - id: ap_count_item
+    parameters:
+        - type: integer
+        - type: counter
+
+  - id: ap_location_send
+    parameters:
+      - type: integer
+
+...
