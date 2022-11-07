@@ -1,5 +1,5 @@
 local Wargroove = require "wargroove/wargroove"
-local Events = require "wargroove/events"
+local Events = require "initialized/events"
 local UnitState = require "unit_state"
 local Utils = require "utils"
 local io = require "io"
@@ -20,21 +20,17 @@ function Conditions.apHasItem(context)
     local itemId = context:getInteger(0)
     local itemExpectedCount = context:getInteger(1)
     local op = context:getOperator(2)
-    for k, v in pairs(Utils.items) do
-        if v == itemId then
-            local f = io.open("AP\\AP_" .. tostring(v) .. ".item", "r")
-            if f ~= nil then
-                itemCount = tonumber(f:read())
-                if itemCount == nil then
-                    io.close(f)
-                    return false
-                end
-                io.close(f)
-                return op(itemCount, itemExpectedCount)
-            else
-                return false
-            end
+    local f = io.open("AP\\AP_" .. tostring(itemId) .. ".item", "r")
+    if f ~= nil then
+        local itemCount = tonumber(f:read())
+        if itemCount == nil then
+            io.close(f)
+            return false
         end
+        io.close(f)
+        return op(itemCount, itemExpectedCount)
+    else
+        return false
     end
     return false
 end

@@ -7,15 +7,27 @@ en-GB:
     trigger_action_description_ap_item_check: "Checks for the existence of AP items."                                                          # The general description
     trigger_action_readable_ap_item_check: "Checks for the existence of AP items."
 
+    trigger_action_name_ap_victory: "AP: Victory"                                                                            # The name
+    trigger_action_description_ap_victory: "Claims AP Victory."                                                          # The general description
+    trigger_action_readable_ap_victory: "Claim AP Victory."
+
     trigger_action_name_ap_count_item: "AP: Count Item"                                                                            # The name
     trigger_action_description_ap_count_item: "Counts AP items."                                                          # The general description
-    trigger_action_readable_ap_count_item: "Add ap count item {0} and store into {1}"
+    trigger_action_readable_ap_count_item: "Add AP count item {0} and store into {1}"
 
     trigger_action_name_ap_location_send: "AP: Send Item"                                                                            # The name
     trigger_action_description_ap_location_send: "Sends an AP item to someone."                                                          # The general description
     trigger_action_readable_ap_location_send: "Send AP location ID {0}"
 
     trigger_condition_name_ap_has_item: "AP: Has Item"                                                                                   # The name
-    trigger_condition_description_ap_has_item: "Triggers if a certain item is above a count."                                           # The general description
-    trigger_condition_readable_ap_has_item: "Add ap has item {0} of count {1} {2} current count."    # Numbers are filled in by user choices.
+    trigger_condition_description_ap_has_item: "Triggers if a certain AP item is above a count."                                           # The general description
+    trigger_condition_readable_ap_has_item: "Add AP has item {0} of count {1} {2} current count."    # Numbers are filled in by user choices.
+
+    trigger_action_name_ap_income_boost: "AP: Income Boost"                                                                            # The name
+    trigger_action_description_ap_income_boost: "Calculates AP Income Boost"                                                          # The general description
+    trigger_action_readable_ap_income_boost: "Calculate AP Income Boost for {0}"
+
+    trigger_action_name_ap_co_defense_boost: "AP: Defense Boost"                                                                            # The name
+    trigger_action_description_ap_co_defense_boost: "Calculates Defense AP Income Boost"                                                          # The general description
+    trigger_action_readable_ap_co_defense_boost: "Calculate AP Defense Boost"
 ...

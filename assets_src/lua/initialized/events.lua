@@ -2,7 +2,6 @@ local OriginalEvents = require "wargroove/events"
 local Wargroove = require("wargroove/wargroove")
 local TriggerContext = require("triggers/trigger_context")
 local Resumable = require("wargroove/resumable")
-local Triggers = require("triggers")
 
 local Events = {}
 
@@ -166,10 +165,6 @@ end
 
 function Events.populateTriggerList()
     triggerList = Wargroove.getMapTriggers()
-    
-    local referenceTrigger = triggerList[1] -- Events.getTrigger("$trigger_default_defeat_hq")
-    Events.addTriggerToList(Triggers.getVisionTrigger(referenceTrigger))
-    Events.addTriggerToList(Triggers.getSpawnTrigger(referenceTrigger))
     
     local Actions = require("triggers/actions")
     local Conditions = require("triggers/conditions")
