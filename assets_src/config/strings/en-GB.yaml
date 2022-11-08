@@ -30,4 +30,8 @@ en-GB:
     trigger_action_name_ap_co_defense_boost: "AP: Defense Boost"                                                                            # The name
     trigger_action_description_ap_co_defense_boost: "Calculates Defense AP Income Boost"                                                          # The general description
     trigger_action_readable_ap_co_defense_boost: "Calculate AP Defense Boost"
+
+    trigger_action_name_unit_random_teleport: "Unit: Random Teleport"                                                                            # The name
+    trigger_action_description_unit_random_teleport: "Teleports a unit from one location to another in a random spot."                                                          # The general description
+    trigger_action_readable_unit_random_teleport: "Teleport all {0} owned by {1} from {2} to a random spot in {3} (silent \u003d {4})."
 ...

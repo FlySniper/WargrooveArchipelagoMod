@@ -30,5 +30,26 @@ Utils.items = {
     CODefenseBoost = 52024
 }
 
+Utils.COs = {
+    "commander_caesar",
+    "commander_darkmercia",
+    "commander_elodie",
+    "commander_emeric",
+    "commander_greenfinger",
+    "commander_koji",
+    "commander_mercia",
+    "commander_mercival",
+    "commander_nuru",
+    "commander_ragna",
+    "commander_ryota",
+    "commander_sedge",
+    "commander_sigrid",
+    "commander_tenri",
+    "commander_twins",
+    "commander_valder",
+    "commander_vesper",
+    "commander_wulfar"
+}
+
 
 return Utils

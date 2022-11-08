@@ -2,6 +2,7 @@ local OriginalEvents = require "wargroove/events"
 local Wargroove = require("wargroove/wargroove")
 local TriggerContext = require("triggers/trigger_context")
 local Resumable = require("wargroove/resumable")
+local Triggers = require("triggers")
 
 local Events = {}
 
@@ -168,6 +169,8 @@ function Events.populateTriggerList()
     
     local Actions = require("triggers/actions")
     local Conditions = require("triggers/conditions")
+
+    Events.addTriggerToList(Triggers.getRandomCOTrigger())
 
     Conditions.populate(triggerConditions)
     Actions.populate(triggerActions)

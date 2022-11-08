@@ -19,4 +19,12 @@ triggerActions:
 
   - id: ap_co_defense_boost
 
+  - id: unit_random_teleport
+    parameters:
+      - type: unit_class_star
+      - type: player_neutral_star
+      - type: location_star
+      - type: location_star
+      - type: boolean
+
 ...
