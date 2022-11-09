@@ -51,5 +51,45 @@ Utils.COs = {
     "commander_wulfar"
 }
 
+Utils.locations = {
+    HumbleBeginningsCaesar=53001,
+    HumbleBeginningsChest1=53002,
+    HumbleBeginningsChest2=53003,
+    HumbleBeginningsVictory=53004,
+    BestFriendssssFindSedge=53005,
+    BestFriendssssVictory=53006,
+    AKnightsFollyCaesar=53007,
+    AKnightsFollyVictory=53008,
+    DenrunawayChest=53009,
+    DenrunawayVictory=53010,
+    DragonFreewayVictory=53011,
+    DeepThicketFindSedge=53012,
+    DeepThicketVictory=53013,
+    CorruptedInletVictory=53014,
+    MageMayhemCaesar=53015,
+    MageMayhemVictory=53016,
+    EndlessKnightVictory=53017,
+    AmbushedintheMiddleVictory1=53018,
+    AmbushedintheMiddleVictory2=53019,
+    TheChurningSeaVictory=53020,
+    FrigidArcheryLighttheTorch=53021,
+    FrigidArcheryVictory=53022,
+    ArcheryLessonsChest=53023,
+    ArcheryLessonsVictory=53024,
+    SurroundedCaesar=53025,
+    SurroundedVictory=53026,
+    DarkestKnightVictory=53027,
+    RobbedVictory=53028,
+    OpenSeasonCaesar=53029,
+    OpenSeasonVictory=53030,
+    DoggoMountainFindalltheDogs=53031,
+    DoggoMountainVictory=53032,
+    TenrisFallVictory=53033,
+    MasteroftheLakeVictory=53034,
+    ABallistasRevengeVictory=53035,
+    RebelVillageVictory1=53036,
+    RebelVillageVictory2=53037,
+}
+
 
 return Utils

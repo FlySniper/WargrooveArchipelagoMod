@@ -147,11 +147,8 @@ function Actions.apIncomeBoost(context)
         itemCount = tonumber(item:read())
         io.close(item)
     end
-    print("1 " .. tostring(content))
     local settings = json.parse(content)
-    print(2)
     Wargroove.changeMoney(playerId, settings["income_boost"] * itemCount)
-    print(3)
 end
 
 function Actions.apDefenseBoost(context)
