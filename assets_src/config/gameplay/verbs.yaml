@@ -1,0 +1,8 @@
+verbs:
+  - id: recruit_ap
+    icon: ui/icons/unit_action_icon_cancel.png
+    name: ui_unit_verbs_recruit
+    targetColour: target
+    targetOutlineColour: target_outline
+    preExecute: true
+    scriptName: verbs/recruit_ap

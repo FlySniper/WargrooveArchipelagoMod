@@ -171,6 +171,7 @@ function Events.populateTriggerList()
     local Conditions = require("triggers/conditions")
 
     Events.addTriggerToList(Triggers.getRandomCOTrigger())
+    Events.addTriggerToList(Triggers.replaceProductionWithAP())
 
     Conditions.populate(triggerConditions)
     Actions.populate(triggerActions)

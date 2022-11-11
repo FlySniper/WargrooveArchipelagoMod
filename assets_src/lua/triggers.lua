@@ -17,4 +17,17 @@ function Triggers.getRandomCOTrigger()
     return trigger
 end
 
+function Triggers.replaceProductionWithAP()
+    local trigger = {}
+    trigger.id =  "Replace Human Production with AP Structures"
+    trigger.recurring = "repeat"
+    trigger.players = { 1, 1, 1, 1, 1, 1, 1, 1 }
+    trigger.conditions = {}
+    trigger.actions = {}
+
+    table.insert(trigger.actions, { id = "ap_replace_production", parameters = { "current" }  })
+
+    return trigger
+end
+
 return Triggers

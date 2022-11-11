@@ -18,8 +18,11 @@ function Actions.populate(dst)
     dst["ap_victory"] = Actions.apVictory
     dst["ap_income_boost"] = Actions.apIncomeBoost
     dst["ap_co_defense_boost"] = Actions.apDefenseBoost
-    dst["unit_random_co"] = Actions.unitRandomCO
     dst["unit_random_teleport"] = Actions.unitRandomTeleport
+
+    -- Unlisted actions
+    dst["ap_replace_production"] = Actions.replaceProduction
+    dst["unit_random_co"] = Actions.unitRandomCO
 end
 
 -- Local functions
@@ -225,6 +228,39 @@ function Actions.unitRandomTeleport(context)
                 Wargroove.waitTime(0.2)
             end
         end
+    end
+end
+
+local function replaceProductionStructure(playerId, unit, productionClassStr, productionApClassStr)
+
+    if unit.playerId == playerId and Wargroove.isHuman(unit.playerId) and unit.unitClass.id == productionClassStr then
+        unit.unitClassId = productionApClassStr
+        Wargroove.updateUnit(unit)
+        Wargroove.waitFrame()
+        Wargroove.clearCaches()
+    end
+    if Wargroove.isNeutral(unit.playerId) and unit.unitClass.id == productionApClassStr then
+        unit.unitClassId = productionClassStr
+        Wargroove.updateUnit(unit)
+        Wargroove.waitFrame()
+        Wargroove.clearCaches()
+    end
+    if unit.playerId == playerId and not Wargroove.isHuman(unit.playerId) and unit.unitClass.id == productionApClassStr then
+        unit.unitClassId = productionClassStr
+        Wargroove.updateUnit(unit)
+        Wargroove.waitFrame()
+        Wargroove.clearCaches()
+    end
+end
+
+function Actions.replaceProduction(context)
+    local playerId = context:getPlayerId(0)
+    local units = Wargroove.getUnitsAtLocation(nil)
+    for i, unit in ipairs(units) do
+        replaceProductionStructure(playerId, unit, "barracks", "barracks_ap")
+        replaceProductionStructure(playerId, unit, "tower", "tower_ap")
+        replaceProductionStructure(playerId, unit, "port", "port_ap")
+        replaceProductionStructure(playerId, unit, "hideout", "hideout_ap")
     end
 end
 
