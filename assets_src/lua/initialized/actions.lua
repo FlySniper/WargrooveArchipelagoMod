@@ -4,6 +4,7 @@ local UnitState = require "unit_state"
 local Utils = require "utils"
 local io = require "io"
 local json = require "json"
+local prng = require "PRNG"
 
 local Actions = {}
 
@@ -18,6 +19,7 @@ function Actions.populate(dst)
     dst["ap_victory"] = Actions.apVictory
     dst["ap_income_boost"] = Actions.apIncomeBoost
     dst["ap_co_defense_boost"] = Actions.apDefenseBoost
+    dst["ap_prng_seed_num"] = Actions.apPRNGSeedNumber
     dst["unit_random_teleport"] = Actions.unitRandomTeleport
 
     -- Unlisted actions
@@ -78,7 +80,7 @@ function Actions.apItemCheck(context)
     -- "Add ap item check"
     for k, v in pairs(Utils.items) do
         local f = io.open("AP\\AP_" .. tostring(v) .. ".item", "r")
-        local print_file = io.open("AP\\AP_" .. tostring(v) .. ".print", "r+")
+        local print_file_item = io.open("AP\\AP_" .. tostring(v) .. ".item.print", "r+")
         if f ~= nil then
             local itemCount = tonumber(f:read())
             if itemCount == nil then
@@ -89,14 +91,14 @@ function Actions.apItemCheck(context)
         else
             UnitState.setState(k, 0)
         end
-        if print_file ~= nil then
-            local print_text = print_file:read()
+        if print_file_item ~= nil then
+            local print_text = print_file_item:read()
             if print_text ~= nil and print_text ~= "" then
                 Wargroove.showMessage(print_text)
             end
-            io.close(print_file)
+            io.close(print_file_item)
 
-            local print_file_clear = io.open("AP\\AP_" .. tostring(v) .. ".print", "w+")
+            local print_file_clear = io.open("AP\\AP_" .. tostring(v) .. ".item.print", "w+")
             io.close(print_file_clear)
         end
     end
@@ -195,7 +197,8 @@ function Actions.unitRandomCO(context)
     local units = Wargroove.getUnitsAtLocation(nil)
     for i, unit in ipairs(units) do
         if unit.playerId == playerId and unit.unitClass.isCommander and unit.unitClass.id ~= "commander_sedge" then
-            local random = math.floor(Wargroove.pseudoRandomFromString(tostring(Wargroove.getOrderId() .. tostring(playerId).. tostring(unit.id))) * (18 - 1 + 1)) + 1
+            --local random = math.floor(Wargroove.pseudoRandomFromString(tostring(Wargroove.getOrderId() .. tostring(playerId).. tostring(unit.id))) * (18 - 1 + 1)) + 1
+            local random = (prng.get_random_32() % 18) + 1
             unit.unitClassId = Utils.COs[random]
             Wargroove.updateUnit(unit)
             Wargroove.waitFrame()
@@ -215,7 +218,8 @@ function Actions.unitRandomTeleport(context)
         local oldPos = unit.pos
         local numcandidates = #candidates
         if numcandidates > 0 then
-            local random = math.floor(Wargroove.pseudoRandomFromString(tostring(Wargroove.getOrderId() .. tostring(unit.playerId).. tostring(unit.id))) * (numcandidates - 1 + 1)) + 1
+            -- local random = math.floor(Wargroove.pseudoRandomFromString(tostring(Wargroove.getOrderId() .. tostring(unit.playerId).. tostring(unit.id))) * (numcandidates - 1 + 1)) + 1
+            local random = (prng.get_random_32() % numcandidates) + 1
             unit.pos = candidates[random].pos
         end
 
@@ -274,6 +278,18 @@ function Actions.replaceProduction(context)
         replaceProductionStructure(playerId, unit, "port", "port_ap")
         replaceProductionStructure(playerId, unit, "hideout", "hideout_ap")
     end
+end
+
+function Actions.apPRNGSeedNumber(context)
+    -- "Seed our unique PRNG algorithm"
+    local seedId = context:getInteger(0)
+    local seedFile = io.open("AP\\seed" .. tostring(seedId), "r")
+    local seed = 0
+    if seedFile ~= nil then
+        seed = tonumber(seedFile:read())
+        io.close(seedFile)
+    end
+    prng.set_seed(seed)
 end
 
 

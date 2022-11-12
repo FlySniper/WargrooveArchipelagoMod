@@ -13,6 +13,10 @@ triggerActions:
     parameters:
       - type: integer
 
+  - id: ap_prng_seed_num
+    parameters:
+      - type: integer
+
   - id: ap_income_boost
     parameters:
       - type: player_star
