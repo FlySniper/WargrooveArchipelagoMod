@@ -19,7 +19,7 @@ function RecruitAP:getMaximumRange(unit, endPos)
 end
 
 function RecruitAP:getTargetType()
-    return "all"
+    return "empty"
 end
 
 RecruitAP.classToRecruit = nil
