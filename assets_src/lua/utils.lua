@@ -51,45 +51,52 @@ Utils.COs = {
     "commander_wulfar"
 }
 
-Utils.locations = {
-    HumbleBeginningsCaesar=53001,
-    HumbleBeginningsChest1=53002,
-    HumbleBeginningsChest2=53003,
-    HumbleBeginningsVictory=53004,
-    BestFriendssssFindSedge=53005,
-    BestFriendssssVictory=53006,
-    AKnightsFollyCaesar=53007,
-    AKnightsFollyVictory=53008,
-    DenrunawayChest=53009,
-    DenrunawayVictory=53010,
-    DragonFreewayVictory=53011,
-    DeepThicketFindSedge=53012,
-    DeepThicketVictory=53013,
-    CorruptedInletVictory=53014,
-    MageMayhemCaesar=53015,
-    MageMayhemVictory=53016,
-    EndlessKnightVictory=53017,
-    AmbushedintheMiddleVictory1=53018,
-    AmbushedintheMiddleVictory2=53019,
-    TheChurningSeaVictory=53020,
-    FrigidArcheryLighttheTorch=53021,
-    FrigidArcheryVictory=53022,
-    ArcheryLessonsChest=53023,
-    ArcheryLessonsVictory=53024,
-    SurroundedCaesar=53025,
-    SurroundedVictory=53026,
-    DarkestKnightVictory=53027,
-    RobbedVictory=53028,
-    OpenSeasonCaesar=53029,
-    OpenSeasonVictory=53030,
-    DoggoMountainFindalltheDogs=53031,
-    DoggoMountainVictory=53032,
-    TenrisFallVictory=53033,
-    MasteroftheLakeVictory=53034,
-    ABallistasRevengeVictory=53035,
-    RebelVillageVictory1=53036,
-    RebelVillageVictory2=53037,
-}
+Utils.locations = {}
+Utils.locations["Humble Beginnings: Caesar"]=53001
+Utils.locations["Humble Beginnings: Chest 1"]=53002
+Utils.locations["Humble Beginnings: Chest 2"]=53003
+Utils.locations["Humble Beginnings: Victory"]=53004
+Utils.locations["Best Friendssss: Find Sedge"]=53005
+Utils.locations["Best Friendssss: Victory"]=53006
+Utils.locations["A Knight's Folly: Caesar"]=53007
+Utils.locations["A Knight's Folly: Victory"]=53008
+Utils.locations["Denrunaway: Chest"]=53009
+Utils.locations["Denrunaway: Victory"]=53010
+Utils.locations["Dragon Freeway: Victory"]=53011
+Utils.locations["Deep Thicket: Find Sedge"]=53012
+Utils.locations["Deep Thicket: Victory"]=53013
+Utils.locations["Corrupted Inlet: Victory"]=53014
+Utils.locations["Mage Mayhem: Caesar"]=53015
+Utils.locations["Mage Mayhem: Victory"]=53016
+Utils.locations["Endless Knight: Victory"]=53017
+Utils.locations["Ambushed in the Middle: Victory (Blue)"]=53018
+Utils.locations["Ambushed in the Middle: Victory (Green)"]=53019
+Utils.locations["The Churning Sea: Victory"]=53020
+Utils.locations["Frigid Archery: Light the Torch"]=53021
+Utils.locations["Frigid Archery: Victory"]=53022
+Utils.locations["Archery Lessons: Chest"]=53023
+Utils.locations["Archery Lessons: Victory"]=53024
+Utils.locations["Surrounded: Caesar"]=53025
+Utils.locations["Surrounded: Victory"]=53026
+Utils.locations["Darkest Knight: Victory"]=53027
+Utils.locations["Robbed: Victory"]=53028
+Utils.locations["Open Season: Caesar"]=53029
+Utils.locations["Open Season: Victory"]=53030
+Utils.locations["Doggo Mountain: Find all the Dogs"]=53031
+Utils.locations["Doggo Mountain: Victory"]=53032
+Utils.locations["Tenri's Fall: Victory"]=53033
+Utils.locations["Master of the Lake: Victory"]=53034
+Utils.locations["A Ballistas Revenge: Victory"]=53035
+Utils.locations["Rebel Village: Victory (Pink)"]=53036
+Utils.locations["Rebel Village: Victory (Red)"]=53037
 
+function Utils.getLocationName(id)
+    for k,v in pairs(Utils.locations) do
+        if v == id then
+            return k
+        end
+    end
+    return ""
+end
 
 return Utils

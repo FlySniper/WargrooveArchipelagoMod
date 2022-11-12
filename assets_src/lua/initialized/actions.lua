@@ -78,6 +78,7 @@ function Actions.apItemCheck(context)
     -- "Add ap item check"
     for k, v in pairs(Utils.items) do
         local f = io.open("AP\\AP_" .. tostring(v) .. ".item", "r")
+        local print_file = io.open("AP\\AP_" .. tostring(v) .. ".print", "r+")
         if f ~= nil then
             local itemCount = tonumber(f:read())
             if itemCount == nil then
@@ -87,6 +88,16 @@ function Actions.apItemCheck(context)
             io.close(f)
         else
             UnitState.setState(k, 0)
+        end
+        if print_file ~= nil then
+            local print_text = print_file:read()
+            if print_text ~= nil and print_text ~= "" then
+                Wargroove.showMessage(print_text)
+            end
+            io.close(print_file)
+
+            local print_file_clear = io.open("AP\\AP_" .. tostring(v) .. ".print", "w+")
+            io.close(print_file_clear)
         end
     end
 end
@@ -124,6 +135,7 @@ function Actions.apLocationSend(context)
     local f = io.open("AP\\send" .. tostring(locationId), "w")
     f:write("")
     io.close(f)
+    Wargroove.showMessage("Discovered location (" .. Utils.getLocationName(locationId) .. ")")
 end
 
 function Actions.apVictory(context)
