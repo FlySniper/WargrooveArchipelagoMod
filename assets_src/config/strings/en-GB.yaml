@@ -38,4 +38,9 @@ en-GB:
     trigger_action_name_unit_random_teleport: "Unit: Random Teleport"
     trigger_action_description_unit_random_teleport: "Teleports a unit from one location to another in a random spot."
     trigger_action_readable_unit_random_teleport: "Teleport all {0} owned by {1} from {2} to a random spot in {3} (silent \u003d {4})."
+
+    unit_description_barracks_ap: "Used to recruit new ground units. Can also reinforce injured units."
+    unit_description_port_ap: "Used to recruit new water units. Can also reinforce injured units."
+    unit_description_tower_ap: "Used to recruit new air units. Can also reinforce injured units."
+    unit_description_hideout_ap: "Used to recruit Thief and Rifleman units. Can also reinforce injured units."
 ...
