@@ -1,3 +1,6 @@
+local io = require "io"
+local json = require "json"
+
 local Utils = {}
 Utils.items = {
     spearman = 52000,
@@ -26,8 +29,14 @@ Utils.items = {
     FinalSickle = 52022,
 
     IncomeBoost = 52023,
+    CommanderDefenseBoost = 52024,
 
-    CommanderDefenseBoost = 52024
+    CherrystoneCommanders = 52025,
+    FelheimCommanders = 52026,
+    FloranCommanders = 52027,
+    HeavensongCommanders = 52028,
+    RequiemCommanders = 52029,
+    OutlawCommanders = 52030,
 }
 
 Utils.COs = {
@@ -97,6 +106,17 @@ function Utils.getLocationName(id)
         end
     end
     return ""
+end
+
+function Utils.getCommanderData()
+    local f = io.open("AP\\commander.json", "r")
+    if f == nil then
+        -- Return Mercival and 0 starting groove in case the player closes the client. This prevents cheating
+        return "commander_mercival", 0
+    end
+    local fileText = f:read("*all")
+    local commanderData = json.parse(fileText)
+    return commanderData["commander"], commanderData["starting_groove"]
 end
 
 return Utils
