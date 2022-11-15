@@ -21,7 +21,7 @@ triggerActions:
     parameters:
       - type: player_star
 
-  - id: ap_co_defense_boost
+  - id: ap_commander_defense_boost
 
   - id: unit_random_teleport
     parameters:

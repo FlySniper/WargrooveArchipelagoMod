@@ -27,7 +27,7 @@ Utils.items = {
 
     IncomeBoost = 52023,
 
-    CODefenseBoost = 52024
+    CommanderDefenseBoost = 52024
 }
 
 Utils.COs = {

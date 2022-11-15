@@ -18,7 +18,7 @@ function Actions.populate(dst)
     dst["ap_count_item"] = Actions.apCountItem
     dst["ap_victory"] = Actions.apVictory
     dst["ap_income_boost"] = Actions.apIncomeBoost
-    dst["ap_co_defense_boost"] = Actions.apDefenseBoost
+    dst["ap_commander_defense_boost"] = Actions.apDefenseBoost
     dst["ap_prng_seed_num"] = Actions.apPRNGSeedNumber
     dst["unit_random_teleport"] = Actions.unitRandomTeleport
 
@@ -186,7 +186,7 @@ function Actions.apDefenseBoost(context)
     local units = Wargroove.getUnitsAtLocation(nil)
     for i, unit in ipairs(units) do
         if Wargroove.isHuman(unit.playerId) and unit.unitClass.isCommander then
-            unit.damageTakenPercent = math.max(100 - (settings["co_defense_boost"] * itemCount), 1)
+            unit.damageTakenPercent = math.max(100 - (settings["commander_defense_boost"] * itemCount), 1)
             Wargroove.updateUnit(unit)
         end
     end

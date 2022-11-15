@@ -31,9 +31,9 @@ en-GB:
     trigger_action_description_ap_income_boost: "Calculates AP Income Boost"
     trigger_action_readable_ap_income_boost: "Calculate AP Income Boost for {0}"
 
-    trigger_action_name_ap_co_defense_boost: "AP: Defense Boost"
-    trigger_action_description_ap_co_defense_boost: "Calculates Defense AP Income Boost"
-    trigger_action_readable_ap_co_defense_boost: "Calculate AP Defense Boost"
+    trigger_action_name_ap_commander_defense_boost: "AP: Defense Boost"
+    trigger_action_description_ap_commander_defense_boost: "Calculates Defense AP Commander Defense Boost"
+    trigger_action_readable_ap_commander_defense_boost: "Calculate AP Commander Defense Boost"
 
     trigger_action_name_unit_random_teleport: "Unit: Random Teleport"
     trigger_action_description_unit_random_teleport: "Teleports a unit from one location to another in a random spot."
