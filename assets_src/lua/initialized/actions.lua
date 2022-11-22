@@ -152,41 +152,27 @@ end
 function Actions.apIncomeBoost(context)
     -- "Read the income boost setting and apply it to player {0}"
     local playerId = context:getPlayerId(0)
-    local f = io.open("AP\\AP_settings.json", "r")
-    if f == nil then
-        return
-    end
-    local content = f:read("*all")
-    io.close(f)
     local item = io.open("AP\\AP_" .. tostring(52023) .. ".item", "r")
-    local itemCount = 0
+    local itemValue = 0
     if item ~= nil then
-        itemCount = tonumber(item:read())
+        itemValue = tonumber(item:read())
         io.close(item)
     end
-    local settings = json.parse(content)
-    Wargroove.changeMoney(playerId, settings["income_boost"] * itemCount)
+    Wargroove.changeMoney(playerId, itemValue)
 end
 
 function Actions.apDefenseBoost(context)
     -- "Read the defense boost setting and stores it into {0}"
-    local f = io.open("AP\\AP_settings.json", "r")
-    if f == nil then
-        return
-    end
-    local content = f:read("*all")
-    io.close(f)
     local item = io.open("AP\\AP_" .. tostring(52024) .. ".item", "r")
-    local itemCount = 0
+    local itemValue = 0
     if item ~= nil then
-        itemCount = tonumber(item:read())
+        itemValue = tonumber(item:read())
         io.close(item)
     end
-    local settings = json.parse(content)
     local units = Wargroove.getUnitsAtLocation(nil)
     for i, unit in ipairs(units) do
         if Wargroove.isHuman(unit.playerId) and unit.unitClass.isCommander then
-            unit.damageTakenPercent = math.max(100 - (settings["commander_defense_boost"] * itemCount), 1)
+            unit.damageTakenPercent = math.max(100 - (itemValue), 1)
             Wargroove.updateUnit(unit)
         end
     end
