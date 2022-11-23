@@ -21,6 +21,7 @@ function Actions.populate(dst)
     dst["ap_commander_defense_boost"] = Actions.apDefenseBoost
     dst["ap_prng_seed_num"] = Actions.apPRNGSeedNumber
     dst["unit_random_teleport"] = Actions.unitRandomTeleport
+    dst["location_unit_random_teleport"] = Actions.locationRandomTeleportToUnit
 
     -- Unlisted actions
     dst["ap_replace_production"] = Actions.replaceProduction
@@ -236,6 +237,24 @@ function Actions.unitRandomTeleport(context)
                 Wargroove.waitTime(0.2)
             end
         end
+    end
+end
+
+function Actions.locationRandomTeleportToUnit(context)
+    -- "Randomly Move location {0} to {1} owned by {2} at {3}."
+    local location = context:getLocation(0)
+    local units = context:gatherUnits(2, 1, 3)
+    local num_units = #units
+    if num_units == 0 then
+       return
+    end
+    local random = (prng.get_random_32() % num_units) + 1
+    local unit = units[random]
+    if (unit.inTransport) then
+        local transport = Wargroove.getUnitById(unit.transportedBy)
+        Wargroove.moveLocationTo(location.id, transport.pos)
+    else
+        Wargroove.moveLocationTo(location.id, unit.pos)
     end
 end
 

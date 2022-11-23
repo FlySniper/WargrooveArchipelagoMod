@@ -23,6 +23,13 @@ triggerActions:
 
   - id: ap_commander_defense_boost
 
+  - id: location_unit_random_teleport
+    parameters:
+      - type: location_star
+      - type: unit_class_star
+      - type: player_neutral_star
+      - type: location_star
+
   - id: unit_random_teleport
     parameters:
       - type: unit_class_star

@@ -98,6 +98,7 @@ Utils.locations["Master of the Lake: Victory"]=53034
 Utils.locations["A Ballistas Revenge: Victory"]=53035
 Utils.locations["Rebel Village: Victory (Pink)"]=53036
 Utils.locations["Rebel Village: Victory (Red)"]=53037
+Utils.locations["Foolish Canal: Victory"]=53038
 
 function Utils.getLocationName(id)
     for k,v in pairs(Utils.locations) do
