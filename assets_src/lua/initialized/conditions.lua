@@ -20,19 +20,17 @@ function Conditions.apHasItem(context)
     local itemId = context:getInteger(0)
     local itemExpectedCount = context:getInteger(1)
     local op = context:getOperator(2)
+    local itemCount = 0
     local f = io.open("AP\\AP_" .. tostring(itemId) .. ".item", "r")
     if f ~= nil then
-        local itemCount = tonumber(f:read())
+        itemCount = tonumber(f:read())
         if itemCount == nil then
             io.close(f)
             return false
         end
         io.close(f)
-        return op(itemCount, itemExpectedCount)
-    else
-        return false
     end
-    return false
+    return op(itemCount, itemExpectedCount)
 end
 
 return Conditions
