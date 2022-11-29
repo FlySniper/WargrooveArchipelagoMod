@@ -26,6 +26,7 @@ function Actions.populate(dst)
     -- Unlisted actions
     dst["ap_replace_production"] = Actions.replaceProduction
     dst["unit_random_co"] = Actions.unitRandomCO
+    dst["ap_set_co_groove"] = Actions.apSetCOGroove
 end
 
 -- Local functions
@@ -191,11 +192,25 @@ function Actions.unitRandomCO(context)
                 unit.unitClassId = Utils.COs[random]
             else
                 unit.unitClassId = commander
-                unit:setGroove(starting_groove)
             end
             Wargroove.updateUnit(unit)
             Wargroove.waitFrame()
             Wargroove.clearCaches()
+        end
+    end
+end
+
+function Actions.apSetCOGroove(context)
+    local playerId = context:getPlayerId(0)
+    local units = Wargroove.getUnitsAtLocation(nil)
+    for i, unit in ipairs(units) do
+        if unit.playerId == playerId and unit.unitClass.isCommander and unit.unitClass.id ~= "commander_sedge" then
+            --local random = math.floor(Wargroove.pseudoRandomFromString(tostring(Wargroove.getOrderId() .. tostring(playerId).. tostring(unit.id))) * (18 - 1 + 1)) + 1
+            local commander, starting_groove = Utils.getCommanderData()
+            if commander ~= "seed" and Wargroove.isHuman(unit.playerId) then
+                unit.grooveCharge = starting_groove
+                Wargroove.updateUnit(unit)
+            end
         end
     end
 end

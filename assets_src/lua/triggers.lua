@@ -6,14 +6,27 @@ local Triggers = {}
 function Triggers.getRandomCOTrigger()
     local trigger = {}
     trigger.id =  "Randomize CO"
+    trigger.recurring = "start_of_match"
+    trigger.players = { 1, 1, 1, 1, 1, 1, 1, 1 }
+    trigger.conditions = {}
+    trigger.actions = {}
+
+    table.insert(trigger.actions, { id = "unit_random_co", parameters = { "current" }  })
+    
+    return trigger
+end
+
+function Triggers.getAPGrooveTrigger()
+    local trigger = {}
+    trigger.id =  "AP Groove"
     trigger.recurring = "oncePerPlayer"
     trigger.players = { 1, 1, 1, 1, 1, 1, 1, 1 }
     trigger.conditions = {}
     trigger.actions = {}
 
     table.insert(trigger.conditions, { id = "start_of_turn", parameters = { } })
-    table.insert(trigger.actions, { id = "unit_random_co", parameters = { "current" }  })
-    
+    table.insert(trigger.actions, { id = "ap_set_co_groove", parameters = { "current" }  })
+
     return trigger
 end
 
