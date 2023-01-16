@@ -184,14 +184,14 @@ function Actions.unitRandomCO(context)
     local playerId = context:getPlayerId(0)
     local units = Wargroove.getUnitsAtLocation(nil)
     for i, unit in ipairs(units) do
-        if unit.playerId == playerId and unit.unitClass.isCommander and unit.unitClass.id ~= "commander_sedge" then
+        if unit.unitClass.isCommander and unit.unitClass.id ~= "commander_sedge" and unit.playerId ~= -1 then
             --local random = math.floor(Wargroove.pseudoRandomFromString(tostring(Wargroove.getOrderId() .. tostring(playerId).. tostring(unit.id))) * (18 - 1 + 1)) + 1
             local commander, starting_groove = Utils.getCommanderData()
-            if commander == "seed" or not Wargroove.isHuman(unit.playerId) then
+            if commander ~= "seed" and Wargroove.isHuman(unit.playerId) then
+                unit.unitClassId = commander
+            else
                 local random = (prng.get_random_32() % 18) + 1
                 unit.unitClassId = Utils.COs[random]
-            else
-                unit.unitClassId = commander
             end
             Wargroove.updateUnit(unit)
             Wargroove.waitFrame()
