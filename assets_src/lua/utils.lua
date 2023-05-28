@@ -116,6 +116,7 @@ function Utils.getCommanderData()
         return "commander_mercival", 0
     end
     local fileText = f:read("*all")
+    io.close(f)
     local commanderData = json.parse(fileText)
     return commanderData["commander"], commanderData["starting_groove"]
 end
