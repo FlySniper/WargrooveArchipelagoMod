@@ -3,6 +3,10 @@
 # This is the string configuration file for English.
 en-GB:
     # Triggers
+    trigger_action_name_ap_random: "AP: Random"
+    trigger_action_description_ap_random: "Sets a counter to a random number in a range using the AP seed."
+    trigger_action_readable_ap_random: "Counter {0}: Set to a random number between {1} and {2} (inclusive)."
+
     trigger_action_name_ap_item_check: "AP: Item Check"
     trigger_action_description_ap_item_check: "Checks for the existence of AP items."
     trigger_action_readable_ap_item_check: "Checks for the existence of AP items."

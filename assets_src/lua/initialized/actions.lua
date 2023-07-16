@@ -20,6 +20,7 @@ function Actions.populate(dst)
     dst["ap_income_boost"] = Actions.apIncomeBoost
     dst["ap_commander_defense_boost"] = Actions.apDefenseBoost
     dst["ap_prng_seed_num"] = Actions.apPRNGSeedNumber
+    dst["ap_random"] = Actions.apRandom
     dst["unit_random_teleport"] = Actions.unitRandomTeleport
     dst["location_unit_random_teleport"] = Actions.locationRandomTeleportToUnit
 
@@ -318,6 +319,15 @@ function Actions.apPRNGSeedNumber(context)
     prng.set_seed(seed)
 end
 
+function Actions.apRandom(context)
+    -- "Counter {0}: Set to a random number between {1} and {2} (inclusive)."
+    local counterId = context:getInteger(0)
+    local min = context:getInteger(1)
+    local max = context:getInteger(2)
 
+    local value = math.floor((prng.get_random_32() % (max - min + 1)) + min)
+
+    context:setMapCounter(0, value)
+end
 
 return Actions

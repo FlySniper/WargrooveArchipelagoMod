@@ -38,4 +38,9 @@ triggerActions:
       - type: location_star
       - type: boolean
 
+  - id: ap_random
+    parameters:
+      - type: counter
+      - type: integer
+      - type: integer
 ...
