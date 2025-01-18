@@ -23,6 +23,7 @@ function Actions.populate(dst)
     dst["ap_random"] = Actions.apRandom
     dst["unit_random_teleport"] = Actions.unitRandomTeleport
     dst["location_unit_random_teleport"] = Actions.locationRandomTeleportToUnit
+    dst["eliminate"] = Actions.eliminate
 
     -- Unlisted actions
     dst["ap_replace_production"] = Actions.replaceProduction
@@ -328,6 +329,17 @@ function Actions.apRandom(context)
     local value = math.floor((prng.get_random_32() % (max - min + 1)) + min)
 
     context:setMapCounter(0, value)
+end
+
+function Actions.eliminate(context)
+    local playerId = context:getPlayerId(0)
+    Wargroove.eliminate(playerId)
+    if Wargroove.isHuman(playerId) and Wargroove.getCurrentPlayerId() ~= playerId then
+        print("Deathlink Sent")
+        local f = io.open("AP\\deathLinkSend", "w+")
+        f:write("to reach the enemy stronghold")
+        io.close(f)
+    end
 end
 
 return Actions

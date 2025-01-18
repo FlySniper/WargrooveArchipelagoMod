@@ -173,6 +173,7 @@ function Events.populateTriggerList()
     Events.addTriggerToList(Triggers.getRandomCOTrigger())
     Events.addTriggerToList(Triggers.replaceProductionWithAP())
     Events.addTriggerToList(Triggers.getAPGrooveTrigger())
+    Events.addTriggerToList(Triggers.getAPDeathLinkReceivedTrigger())
 
     Conditions.populate(triggerConditions)
     Actions.populate(triggerActions)

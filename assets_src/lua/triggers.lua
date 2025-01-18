@@ -30,6 +30,19 @@ function Triggers.getAPGrooveTrigger()
     return trigger
 end
 
+function Triggers.getAPDeathLinkReceivedTrigger()
+    local trigger = {}
+    trigger.id =  "AP Deathlink"
+    trigger.recurring = "once"
+    trigger.players = { 1, 1, 1, 1, 1, 1, 1, 1 }
+    trigger.conditions = {}
+    trigger.actions = {}
+
+    table.insert(trigger.conditions, { id = "ap_has_death_link", parameters = { "current" } })
+
+    return trigger
+end
+
 function Triggers.replaceProductionWithAP()
     local trigger = {}
     trigger.id =  "Replace Human Production with AP Structures"

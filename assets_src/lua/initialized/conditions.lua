@@ -13,6 +13,9 @@ end
 
 function Conditions.populate(dst)
     dst["ap_has_item"] = Conditions.apHasItem
+
+    -- Unlisted conditions
+    dst["ap_has_death_link"] = Conditions.apHasDeathLink
 end
 
 function Conditions.apHasItem(context)
@@ -31,6 +34,28 @@ function Conditions.apHasItem(context)
         io.close(f)
     end
     return op(itemCount, itemExpectedCount)
+end
+
+function Conditions.apHasDeathLink(context)
+    local playerId = context:getPlayerId(0)
+    if Wargroove.isHuman(playerId) then
+        local f = io.open("AP\\deathLinkReceive", "r")
+        if f ~= nil then
+            local death_link_text = f:read()
+            if death_link_text == "1" then
+                io.close(f)
+                return false
+            end
+            io.close(f)
+            Wargroove.showDialogueBox("sad", "mercia", death_link_text, "", {}, "standard", true)
+            Wargroove.eliminate(playerId)
+            local file = io.open("AP\\deathLinkReceive", "w+")
+            file:write("1")
+            io.close(file)
+            return true
+        end
+    end
+    return false
 end
 
 return Conditions
