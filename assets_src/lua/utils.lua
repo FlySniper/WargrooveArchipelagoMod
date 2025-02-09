@@ -121,4 +121,16 @@ function Utils.getCommanderData()
     return commanderData["commander"], commanderData["starting_groove"]
 end
 
+function Utils.getSettings()
+    local f = io.open("AP\\AP_settings.json", "r")
+    if f == nil then
+        -- Return Mercival and 0 starting groove in case the player closes the client. This prevents cheating
+        return nil
+    end
+    local fileText = f:read("*all")
+    io.close(f)
+    local data = json.parse(fileText)
+    return data
+end
+
 return Utils

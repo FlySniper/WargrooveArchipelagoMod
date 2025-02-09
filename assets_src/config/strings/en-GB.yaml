@@ -51,4 +51,7 @@ en-GB:
     unit_description_port_ap: "Used to recruit new water units. Can also reinforce injured units."
     unit_description_tower_ap: "Used to recruit new air units. Can also reinforce injured units."
     unit_description_hideout_ap: "Used to recruit Thief and Rifleman units. Can also reinforce injured units."
+
+    ui_unit_verbs_mw_sacrifice: "Sacrifice"
+    ui_unit_verbs_mw_summon: "Summon"
 ...
