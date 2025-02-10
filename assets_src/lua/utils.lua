@@ -1,5 +1,6 @@
 local io = require "io"
 local json = require "json"
+local prng = require "PRNG"
 
 local Utils = {}
 Utils.items = {
@@ -131,6 +132,13 @@ function Utils.getSettings()
     io.close(f)
     local data = json.parse(fileText)
     return data
+end
+
+function Utils.shuffle(lst)
+    for i = #lst, 2, -1 do
+        local j = (prng.get_random_32() % i) + 1
+        lst[i], lst[j] = lst[j], lst[i]
+    end
 end
 
 return Utils

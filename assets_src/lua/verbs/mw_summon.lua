@@ -73,20 +73,50 @@ function MWSummon:execute(unit, targetPos, strParam, path)
         return
     end
     local unitPos = unit.pos
-    local spawnPosList = {{x=unitPos.x + 1, y=unitPos.y},
+    local spawnPosList1 = {{x=unitPos.x + 1, y=unitPos.y},
                       {x=unitPos.x, y=unitPos.y + 1},
                       {x=unitPos.x - 1, y=unitPos.y},
                       {x=unitPos.x, y=unitPos.y - 1}}
+    Utils.shuffle(spawnPosList1)
+    local spawnPosList2 = {{x=unitPos.x + 2, y=unitPos.y},
+                           {x=unitPos.x, y=unitPos.y + 2},
+                           {x=unitPos.x - 2, y=unitPos.y},
+                           {x=unitPos.x, y=unitPos.y - 2},
+                           {x=unitPos.x + 1, y=unitPos.y + 1},
+                           {x=unitPos.x - 1, y=unitPos.y - 1},
+                           {x=unitPos.x - 1, y=unitPos.y + 1},
+                           {x=unitPos.x + 1, y=unitPos.y - 1}}
+    Utils.shuffle(spawnPosList2)
+    local spawnPosList3 = {{x=unitPos.x + 3, y=unitPos.y},
+                           {x=unitPos.x, y=unitPos.y + 3},
+                           {x=unitPos.x - 3, y=unitPos.y},
+                           {x=unitPos.x, y=unitPos.y - 3},
+                           {x=unitPos.x + 2, y=unitPos.y + 1},
+                           {x=unitPos.x - 2, y=unitPos.y - 1},
+                           {x=unitPos.x - 2, y=unitPos.y + 1},
+                           {x=unitPos.x + 2, y=unitPos.y - 1},
+                           {x=unitPos.x + 1, y=unitPos.y + 2},
+                           {x=unitPos.x - 1, y=unitPos.y - 2},
+                           {x=unitPos.x - 1, y=unitPos.y + 2},
+                           {x=unitPos.x + 1, y=unitPos.y - 2}}
+    Utils.shuffle(spawnPosList3)
     local validSpawns = {}
-    for i, pos in ipairs(spawnPosList) do
-        local u = Wargroove.getUnitAt(pos)
-        if u == nil and Wargroove.canStandAt(targetUnitClass, pos) then
-            table.insert(validSpawns, pos)
+    local allSpawns = {spawnPosList1, spawnPosList2, spawnPosList3}
+    local allSpawnsIndex = 1
+    while #validSpawns == 0  and allSpawnsIndex <= 3 do
+        local spawnPosList = allSpawns[allSpawnsIndex]
+        for i, pos in ipairs(spawnPosList) do
+            local u = Wargroove.getUnitAt(pos)
+            if u == nil and Wargroove.canStandAt(targetUnitClass, pos) then
+                table.insert(validSpawns, pos)
+            end
         end
+        allSpawnsIndex = allSpawnsIndex + 1
     end
     local numValidSpawns = #validSpawns
     if numValidSpawns == 0 then
-        Wargroove.showDialogueBox("sad", "mercia", "A call for aid to the multiworld was made, yet no there's no place for it to stand. The unit is lost to the abyss", "", {}, "standard", true)
+        Wargroove.showMessage("A call for aid to the multiworld was made, yet no there's no place for it to stand.")
+        Wargroove.showMessage("The unit is lost to the abyss.")
         return
     end
     local random = (prng.get_random_32() % numValidSpawns) + 1
