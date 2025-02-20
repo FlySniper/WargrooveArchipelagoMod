@@ -9,7 +9,7 @@ local MWSummon = Verb:new()
 
 
 function MWSummon:getMaximumRange(unit, endPos)
-    return 1
+    return 3
 end
 
 function MWSummon:canExecuteAnywhere(unit)
@@ -45,17 +45,17 @@ end
 
 
 function MWSummon:execute(unit, targetPos, strParam, path)
-    local settings = Utils.getSettings()
-    if settings ~= nil then
-
+    local requestFileName = "AP\\unitSummonRequestAI"
+    if Wargroove.isHuman(unit.playerId) then
+        requestFileName = "AP\\unitSummonRequest"
     end
-    local f = io.open("AP\\unitSummonRequest", "w+")
+    local f = io.open(requestFileName, "w+")
     f:write("")
     io.close(f)
     print("Attempting to summon a unit")
     local targetUnitClass = ""
-    for i = 1, 4 do
-        Wargroove.waitTime(1.0)
+    for i = 1, 8 do
+        Wargroove.waitTime(0.5)
         local f = io.open("AP\\unitSummonResponse", "r+")
         if f ~= nil then
             targetUnitClass = f:read()
@@ -166,7 +166,7 @@ end
 
 
 function MWSummon:getScore(unitId, order)
-    local score = (prng.get_random_32() % 16) + 4
+    local score = (prng.get_random_32() % 10) + 1
     return { score = score, healthDelta = 0, introspection = {}}
 end
 

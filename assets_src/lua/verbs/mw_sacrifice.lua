@@ -77,7 +77,11 @@ function MWSacrifice:execute(unit, targetPos, strParam, path)
     Wargroove.playMapSound("darkmercia/darkmerciaGrooveUnitDrained", targetPos)
     Wargroove.playUnitAnimation(targetUnit.id, "hit")
     Wargroove.waitTime(0.3)
-    local f = io.open("AP\\unitSacrifice", "w+")
+    local sacrificeFileName = "AP\\unitSacrificeAI"
+    if Wargroove.isHuman(unit.playerId) then
+        sacrificeFileName = "AP\\unitSacrifice"
+    end
+    local f = io.open(sacrificeFileName, "w+")
     f:write(targetUnit.unitClass.id)
     io.close(f)
     print("Sacrificed " .. targetUnit.unitClass.id)
@@ -135,7 +139,7 @@ function MWSacrifice:getScore(unitId, order)
         costScore = unitValue * 0.5
     end
 
-    local score = (prng.get_random_32() % 10) + 1
+    local score = (prng.get_random_32() % 4) + 3
     return { score = score, healthDelta = 0, introspection = {
         { key = "cost", value = cost },
         { key = "costScore", value = costScore }
