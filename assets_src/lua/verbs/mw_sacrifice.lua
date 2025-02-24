@@ -59,6 +59,10 @@ function MWSacrifice:canExecuteWithTarget(unit, endPos, targetPos, strParam)
             and targetUnit.unitClass.id ~= "garrison"
             and targetUnit.unitClass.id ~= "drone"
             and targetUnit.unitClass.id ~= "crystal"
+            and targetUnit.unitClass.id ~= "shadow_vesper"
+            and targetUnit.unitClass.id ~= "area_heal"
+            and targetUnit.unitClass.id ~= "area_damage"
+            and targetUnit.unitClass.id ~= "smoke_producer"
 end
 
 
